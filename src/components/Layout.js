@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Layout = ({ children }) => (
     <Fragment>
