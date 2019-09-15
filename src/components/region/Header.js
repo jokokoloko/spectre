@@ -1,5 +1,6 @@
 import React from 'react';
 import site from '../../queries/site';
+import Account from '../Account';
 import Menu from '../Menu';
 import Link from '../unit/Link';
 import Logo from '../unit/Logo';
@@ -22,6 +23,7 @@ const Header = () => {
                 </button>
                 <nav id="menu" className="navbar-collapse collapse">
                     <Menu />
+                    <Account />
                 </nav>
             </div>
         </header>
