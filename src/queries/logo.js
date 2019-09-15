@@ -1,1 +1,1 @@
-export default () => '/static/favicon.ico';
+export default () => '/static/icon.png';
