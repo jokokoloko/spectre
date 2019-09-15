@@ -8,6 +8,7 @@ export default () => ({
         },
     },
     overview: {
+        slug: 'overview',
         title: 'Overview',
         description: 'The long night.',
     },

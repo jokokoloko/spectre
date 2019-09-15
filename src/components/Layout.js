@@ -8,9 +8,9 @@ import SEO from './SEO';
 import Header from './region/Header';
 import Footer from './region/Footer';
 
-const Layout = ({ title, description, children }) => (
+const Layout = ({ template, title, description, children }) => (
     <Fragment>
-        <SEO title={title} description={description} />
+        <SEO template={template} title={title} description={description} />
         <Header />
         <main id="main" role="main">
             <div className="container-fluid">{children}</div>
@@ -20,12 +20,14 @@ const Layout = ({ title, description, children }) => (
 );
 
 Layout.propTypes = {
+    template: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
     children: PropTypes.node.isRequired,
 };
 
 Layout.defaultProps = {
+    template: undefined,
     title: undefined,
     description: undefined,
 };
