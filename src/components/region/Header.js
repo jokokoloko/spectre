@@ -1,5 +1,6 @@
 import React from 'react';
 import site from '../../queries/site';
+import Menu from '../Menu';
 import Link from '../unit/Link';
 import Logo from '../unit/Logo';
 
@@ -20,7 +21,7 @@ const Header = () => {
                     <span className="icon-bar">&#9472;</span>
                 </button>
                 <nav id="menu" className="navbar-collapse collapse">
-                    Collapse
+                    <Menu />
                 </nav>
             </div>
         </header>
