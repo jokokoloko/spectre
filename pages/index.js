@@ -5,7 +5,7 @@ import Hero from '../src/components/section/Hero';
 export default () => {
     const { home } = page();
     return (
-        <Layout>
+        <Layout template="home">
             {home.hero && (
                 <Hero id={home.hero.slug} height={home.hero.height} color={1}>
                     <header>
