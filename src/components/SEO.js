@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Head from 'next/head';
+import NextHead from 'next/head';
 import content from '../content';
 
 const SEO = ({ title: pageTitle, description: pageDescription, url, ogImage }) => {
@@ -9,7 +9,7 @@ const SEO = ({ title: pageTitle, description: pageDescription, url, ogImage }) =
     const { title, description } = content.site;
     const metaDescription = pageDescription || description;
     return (
-        <Head>
+        <NextHead>
             <meta charSet="utf-8" />
             <title>{pageTitle || title}</title>
             <meta name="description" content={metaDescription} />
@@ -28,7 +28,7 @@ const SEO = ({ title: pageTitle, description: pageDescription, url, ogImage }) =
             <meta property="og:image" content={ogImage || defaultOGImage} />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
-        </Head>
+        </NextHead>
     );
 };
 
