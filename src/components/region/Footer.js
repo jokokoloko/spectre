@@ -1,10 +1,10 @@
 import React from 'react';
-import content from '../../content';
+import site from '../../queries/site';
 import Basic from '../section/Basic';
 import Link from '../unit/Link';
 
 const Footer = () => {
-    const { title } = content.site;
+    const { name: title } = site();
     return (
         <footer id="footer" role="contentinfo">
             <div className="container-fluid">

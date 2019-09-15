@@ -1,10 +1,10 @@
 import React from 'react';
-import content from '../../content';
+import site from '../../queries/site';
 import Link from '../unit/Link';
 import Logo from '../unit/Logo';
 
 const Header = () => {
-    const { title } = content.site;
+    const { name: title } = site();
     const type = 'fixed';
     const container = 'container';
     return (

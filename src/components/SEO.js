@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NextHead from 'next/head';
-import content from '../content';
+import site from '../queries/site';
 
 const SEO = ({ title: pageTitle, description: pageDescription, url, ogImage }) => {
     const defaultOGURL = '';
     const defaultOGImage = '';
-    const { title, description } = content.site;
+    const { description, name: title } = site();
     const metaDescription = pageDescription || description;
     return (
         <NextHead>

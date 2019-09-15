@@ -1,8 +1,11 @@
 import Layout from '../src/components/Layout';
-import content from '../src/content';
+import page from '../src/queries/page';
 
-export default () => (
-    <Layout>
-        <h1>{content.overview.hero.title}</h1>
-    </Layout>
-);
+export default () => {
+    const { overview } = page();
+    return (
+        <Layout>
+            <h1>{overview.hero.headline}</h1>
+        </Layout>
+    );
+};
