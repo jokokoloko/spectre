@@ -3,6 +3,7 @@ const withSass = require('@zeit/next-sass');
 
 module.exports = withCSS(
     withSass({
+        target: 'serverless',
         webpack: (config) => {
             // Fixes npm packages that depend on `fs` module
             config.node = {
