@@ -6,6 +6,7 @@ import '../styles/theme.scss';
 import '../styles/project.scss';
 import SEO from './SEO';
 import Header from './region/Header';
+import Footer from './region/Footer';
 
 const Layout = ({ title, description, children }) => (
     <Fragment>
@@ -14,7 +15,7 @@ const Layout = ({ title, description, children }) => (
         <main id="main" role="main">
             <div className="container-fluid">{children}</div>
         </main>
-        <footer>Footer</footer>
+        <Footer />
     </Fragment>
 );
 
