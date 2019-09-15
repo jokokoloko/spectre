@@ -39,6 +39,10 @@ export const MAIN = [
 // Account - Log In
 export const ACCOUNT_LOG_IN = [
     {
+        label: 'Home',
+        to: path.ROOT,
+    },
+    {
         label: 'Google',
         to: path.GOOGLE,
         external: true,
