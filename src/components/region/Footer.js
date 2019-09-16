@@ -1,12 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import site from '../../queries/site';
 import Basic from '../section/Basic';
 import Link from '../unit/Link';
 
-const Footer = () => {
+const Footer = ({ offcanvasPush }) => {
     const { name: title } = site();
     return (
-        <footer id="footer" role="contentinfo">
+        <footer id="footer" className={offcanvasPush} role="contentinfo">
             <div className="container-fluid">
                 <Basic id="footer-default" space="space-none">
                     <div className="case style-border-top-grey">
@@ -21,6 +22,14 @@ const Footer = () => {
             </div>
         </footer>
     );
+};
+
+Footer.propTypes = {
+    offcanvasPush: PropTypes.string,
+};
+
+Footer.defaultProps = {
+    offcanvasPush: 'no-offcanvas',
 };
 
 export default Footer;
