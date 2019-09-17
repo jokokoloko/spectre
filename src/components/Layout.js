@@ -5,7 +5,6 @@ import '../styles/function.scss';
 import '../styles/theme.scss';
 import '../styles/project.scss';
 import SEO from './SEO';
-import Menu from './Menu';
 import Header from './region/Header';
 import Footer from './region/Footer';
 
