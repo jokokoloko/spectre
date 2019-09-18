@@ -2,11 +2,13 @@ import React, { Fragment } from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import NextHead from 'next/head';
+import { useRouter } from 'next/router';
 import site from '../queries/site';
 
 const SEO = ({ template, title: pageTitle, description: pageDescription, url, ogImage }) => {
-    const defaultOGURL = '';
     const defaultOGImage = '';
+    const router = useRouter();
+    const currentURL = router.pathname;
     const { description, name: title } = site();
     const metaDescription = pageDescription || description;
     return (
@@ -21,12 +23,12 @@ const SEO = ({ template, title: pageTitle, description: pageDescription, url, og
                 <link rel="apple-touch-icon" href="/static/touch-icon.png" />
                 <link rel="mask-icon" href="/static/favicon-mask.svg" color="#49B882" />
                 <link rel="icon" href="/static/favicon.ico" />
-                <link rel="canonical" href={url || defaultOGURL} />
+                <link rel="canonical" href={currentURL} />
                 <meta charSet="utf-8" />
                 <meta httpEquiv="x-ua-compatible" content="ie=edge" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content={metaDescription} />
-                <meta property="og:url" content={url || defaultOGURL} />
+                <meta property="og:url" content={currentURL} />
                 <meta property="og:site_name" content={title} />
                 {pageTitle && <meta property="og:title" content={pageTitle} />}
                 <meta property="og:description" content={metaDescription} />
@@ -34,7 +36,7 @@ const SEO = ({ template, title: pageTitle, description: pageDescription, url, og
                 {false && <meta property="og:image" content={ogImage || defaultOGImage} />}
                 {false && <meta property="og:image:width" content="1200" />}
                 {false && <meta property="og:image:height" content="630" />}
-                <meta name="twitter:site" content={url || defaultOGURL} />
+                <meta name="twitter:site" content={currentURL} />
                 <meta name="twitter:creator" content={title} />
                 {pageTitle && <meta name="twitter:title" content={pageTitle} />}
                 <meta name="twitter:description" content={metaDescription} />
