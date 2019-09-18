@@ -7,8 +7,8 @@ import site from '../queries/site';
 
 const SEO = ({ template, title: pageTitle, description: pageDescription, url, ogImage }) => {
     const defaultOGImage = '';
-    const router = useRouter();
-    const currentURL = router.pathname;
+    const { pathname } = useRouter();
+    const currentURL = pathname;
     const { description, name: title } = site();
     const metaDescription = pageDescription || description;
     return (
