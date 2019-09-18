@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import OffCanvas from 'react-aria-offcanvas';
 import { Events } from 'react-scroll';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -6,6 +7,7 @@ import '../styles/function.scss';
 import '../styles/theme.scss';
 import '../styles/project.scss';
 import SEO from './SEO';
+import Menu from './Menu';
 import Header from './region/Header';
 import Footer from './region/Footer';
 import Scroll from './widget/Scroll';
@@ -55,7 +57,7 @@ class Layout extends Component {
             });
     }
     render() {
-        const { template, title, description, children } = this.props;
+        const { location, template, title, description, children } = this.props;
         const { isOpen, showScroll } = this.state;
         const offcanvasPush = isOpen ? 'offcanvas-push offcanvas-push-out' : 'offcanvas-push';
         const style = {
@@ -69,7 +71,12 @@ class Layout extends Component {
         };
         return (
             <Fragment>
-                <SEO template={template} title={title} description={description} />
+                <SEO location={location} template={template} title={title} description={description} />
+                <OffCanvas position="right" width="80%" height="100%" labelledby="menu-button" style={style} isOpen={isOpen} onClose={this.onClose}>
+                    <nav id="menu-offcanvas" className="offcanvas-menu">
+                        <Menu offcanvas />
+                    </nav>
+                </OffCanvas>
                 <Header offcanvasPush={offcanvasPush} isOpen={isOpen} onOpen={this.onOpen} />
                 <main id="main" className={offcanvasPush} role="main">
                     <div className="container-fluid">{children}</div>
@@ -82,6 +89,7 @@ class Layout extends Component {
 }
 
 Layout.propTypes = {
+    location: PropTypes.object,
     template: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
@@ -89,6 +97,7 @@ Layout.propTypes = {
 };
 
 Layout.defaultProps = {
+    location: undefined,
     template: undefined,
     title: undefined,
     description: undefined,
