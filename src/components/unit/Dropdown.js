@@ -1,60 +1,37 @@
-import React, { Component, createRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-class Dropdown extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            toggle: false,
+const Dropdown = ({ name, label, alignment, caret, children }) => {
+    const [toggle, setToggle] = useState(false);
+    const isDropdown = useRef();
+    const onClick = () => setToggle(!toggle);
+    const onBlur = useCallback((event) => !isDropdown.current.contains(event.target) && setToggle(false), [isDropdown]);
+    useEffect(() => {
+        toggle && document.addEventListener('click', onBlur);
+        return () => {
+            toggle && document.removeEventListener('click', onBlur);
         };
-        this.isDropdown = createRef();
-        this.onClick = this.onClick.bind(this);
-        this.onBlur = this.onBlur.bind(this);
-    }
-    componentWillUnmount() {
-        document.removeEventListener('click', this.onBlur);
-    }
-    onClick() {
-        this.setState(
-            (prevState) => ({
-                toggle: !prevState.toggle,
-            }),
-            () => (this.state.toggle ? document.addEventListener('click', this.onBlur) : document.removeEventListener('click', this.onBlur)),
-        );
-    }
-    onBlur(event) {
-        !this.isDropdown.current.contains(event.target) &&
-            this.setState(
-                {
-                    toggle: false,
-                },
-                document.removeEventListener('click', this.onBlur),
-            );
-    }
-    render() {
-        const { name, label, alignment, caret, children } = this.props;
-        const { toggle } = this.state;
-        return (
-            <li className={`nav-item dropdown ${toggle ? `show` : `hide`}`} ref={this.isDropdown}>
-                <button
-                    type="button"
-                    id={`${name}-dropdown`}
-                    className={`nav-btn btn dropdown-toggle ${caret ? 'caret' : 'no-caret'}`}
-                    aria-haspopup="true"
-                    aria-expanded={toggle ? true : false}
-                    onClick={this.onClick}
-                >
-                    {label}
-                </button>
-                {toggle && (
-                    <div className={`dropdown-menu dropdown-menu-${alignment} show`} aria-labelledby={`${name}-dropdown`}>
-                        {children}
-                    </div>
-                )}
-            </li>
-        );
-    }
-}
+    }, [toggle, onBlur]);
+    return (
+        <li className={`nav-item dropdown ${toggle ? `show` : `hide`}`} ref={isDropdown}>
+            <button
+                type="button"
+                id={`${name}-dropdown`}
+                className={`nav-btn btn dropdown-toggle ${caret ? 'caret' : 'no-caret'}`}
+                aria-haspopup="true"
+                aria-expanded={toggle}
+                onClick={onClick}
+            >
+                {label}
+            </button>
+            {toggle && (
+                <div className={`dropdown-menu dropdown-menu-${alignment} show`} aria-labelledby={`${name}-dropdown`}>
+                    {children}
+                </div>
+            )}
+        </li>
+    );
+};
 
 Dropdown.propTypes = {
     name: PropTypes.string.isRequired,
