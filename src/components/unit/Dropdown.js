@@ -1,17 +1,15 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 const Dropdown = ({ name, label, alignment, caret, children }) => {
     const [toggle, setToggle] = useState(false);
     const isDropdown = useRef();
     const onClick = () => setToggle(!toggle);
-    const onBlur = useCallback((event) => !isDropdown.current.contains(event.target) && setToggle(false), [isDropdown]);
     useEffect(() => {
+        const onBlur = (event) => !isDropdown.current.contains(event.target) && setToggle(false);
         toggle && document.addEventListener('click', onBlur);
-        return () => {
-            toggle && document.removeEventListener('click', onBlur);
-        };
-    }, [toggle, onBlur]);
+        return () => document.removeEventListener('click', onBlur);
+    }, [toggle]);
     return (
         <li className={`nav-item dropdown ${toggle ? `show` : `hide`}`} ref={isDropdown}>
             <button
