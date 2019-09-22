@@ -3,13 +3,13 @@ import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import NextHead from 'next/head';
 import { useRouter } from 'next/router';
-import site from '../queries/site';
+import useSite from '../queries/useSite';
 
 const SEO = ({ template, title: pageTitle, description: pageDescription, url, ogImage }) => {
     const defaultOGImage = '';
     const { pathname } = useRouter();
+    const { description, name: title } = useSite();
     const currentURL = pathname;
-    const { description, name: title } = site();
     const metaDescription = pageDescription || description;
     return (
         <Fragment>

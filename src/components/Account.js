@@ -1,13 +1,13 @@
 import React from 'react';
 import { generateID } from '../function';
 import * as menu from '../menu';
-import site from '../queries/site';
+import useSite from '../queries/useSite';
 import Button from './unit/Button';
 import Dropdown from './unit/Dropdown';
 import Link from './unit/Link';
 
 const Account = () => {
-    const { action, link } = site();
+    const { action, link } = useSite();
     const loopChildren = menu.ACCOUNT_LOG_IN.map(({ label, to, external }) =>
         external ? (
             <a key={generateID()} className="dropdown-item" title={label} href={to} target="_blank" rel="noopener noreferrer">

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import logo from '../../queries/logo';
+import useLogo from '../../queries/useLogo';
 
-const Logo = ({ className, alternate }) => <img className={`logo img-fluid ${className}`} src={logo()} alt={alternate} />;
+const Logo = ({ className, alternate }) => <img className={`logo img-fluid ${className}`} src={useLogo()} alt={alternate} />;
 
 Logo.propTypes = {
     className: PropTypes.string,

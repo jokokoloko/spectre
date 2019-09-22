@@ -1,9 +1,9 @@
-import page from '../src/queries/page';
+import usePage from '../src/queries/usePage';
 import Layout from '../src/components/Layout';
 import Hero from '../src/components/section/Hero';
 
 export default () => {
-    const { home } = page();
+    const { home } = usePage();
     return (
         <Layout template="home">
             {home.hero && (

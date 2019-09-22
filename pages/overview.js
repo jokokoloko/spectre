@@ -1,9 +1,9 @@
-import page from '../src/queries/page';
+import usePage from '../src/queries/usePage';
 import Layout from '../src/components/Layout';
 import Basic from '../src/components/section/Basic';
 
 export default () => {
-    const { overview } = page();
+    const { overview } = usePage();
     return (
         <Layout template={`page page-${overview.slug}`} title={overview.title}>
             <Basic id="basic-overview">

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import site from '../../queries/site';
+import useSite from '../../queries/useSite';
 import Basic from '../section/Basic';
 import Link from '../unit/Link';
 
 const Footer = ({ offcanvasPush }) => {
-    const { name: title } = site();
+    const { name: title } = useSite();
     return (
         <footer id="footer" className={offcanvasPush} role="contentinfo">
             <div className="container-fluid">

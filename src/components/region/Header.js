@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import site from '../../queries/site';
+import useSite from '../../queries/useSite';
 import Account from '../Account';
 import Menu from '../Menu';
 import Link from '../unit/Link';
 import Logo from '../unit/Logo';
 
 const Header = ({ offcanvasPush, isOpen, onOpen }) => {
-    const { name: title } = site();
+    const { name: title } = useSite();
     const type = 'fixed';
     const container = 'container';
     return (
