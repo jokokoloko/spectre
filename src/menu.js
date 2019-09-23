@@ -15,8 +15,13 @@ export const DROPDOWN = [
         to: `${path.POST}/3`,
     },
     {
-        label: 'React',
-        to: path.REACT,
+        label: 'Footer',
+        to: 'footer',
+        scroll: true,
+    },
+    {
+        label: 'Google',
+        to: path.GOOGLE,
         external: true,
     },
 ];
@@ -24,8 +29,8 @@ export const DROPDOWN = [
 // Main
 export const MAIN = [
     {
-        label: 'Dropdown',
-        children: DROPDOWN,
+        label: 'Simple',
+        to: path.ABOUT,
     },
     {
         label: 'Archive',
@@ -36,8 +41,18 @@ export const MAIN = [
         to: path.OVERVIEW,
     },
     {
-        label: 'Simple',
-        to: path.ABOUT,
+        label: 'Dropdown',
+        children: DROPDOWN,
+    },
+    {
+        label: 'Scroll',
+        to: 'footer',
+        scroll: true,
+    },
+    {
+        label: 'React',
+        to: path.REACT,
+        external: true,
     },
 ];
 
@@ -48,9 +63,9 @@ export const ACCOUNT_LOG_IN = [
         to: path.ROOT,
     },
     {
-        label: 'Google',
-        to: path.GOOGLE,
-        external: true,
+        label: 'Down',
+        to: 'footer',
+        scroll: true,
     },
     {
         label: 'Yahoo',
