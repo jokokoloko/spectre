@@ -16,29 +16,36 @@ ActiveLink.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-const Link = ({ className, activeClassName, title, rel, to, children }) => (
-    <ActiveLink activeClassName={activeClassName} href={to}>
-        <a className={className} title={title} rel={rel}>
+const Link = ({ className, activeClassName, to, title, rel, external, children }) =>
+    external ? (
+        <a className={className} href={to} title={title} target="_blank" rel="noopener noreferrer">
             {children}
         </a>
-    </ActiveLink>
-);
+    ) : (
+        <ActiveLink activeClassName={activeClassName} href={to}>
+            <a className={className} title={title} rel={rel}>
+                {children}
+            </a>
+        </ActiveLink>
+    );
 
 Link.propTypes = {
     className: PropTypes.string,
     activeClassName: PropTypes.string,
+    to: PropTypes.string,
     title: PropTypes.string,
     rel: PropTypes.string,
-    to: PropTypes.string,
+    external: PropTypes.bool,
     children: PropTypes.node.isRequired,
 };
 
 Link.defaultProps = {
     className: 'no-class',
     activeClassName: 'active',
+    to: path.ROOT,
     title: undefined,
     rel: undefined,
-    to: path.ROOT,
+    external: false,
 };
 
 export default Link;
