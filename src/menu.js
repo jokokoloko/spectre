@@ -29,7 +29,7 @@ export const DROPDOWN = [
 // Main
 export const MAIN = [
     {
-        label: 'Simple',
+        label: 'Single',
         to: path.ABOUT,
     },
     {
