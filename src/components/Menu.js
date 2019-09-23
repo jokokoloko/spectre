@@ -6,12 +6,12 @@ import Dropdown from './unit/Dropdown';
 import Link from './unit/Link';
 
 const Menu = ({ offcanvas }) => {
-    const loopMain = menu.MAIN.map(({ label, to, external, children }) => {
+    const loopMain = menu.MAIN.map(({ label, to, scroll, external, children }) => {
         const name = slugify(label);
         const loopChildren =
             children &&
-            children.map(({ label, to, external }) => (
-                <Link key={generateID()} className="dropdown-item" to={to} external={external} children={label} />
+            children.map(({ label, to, scroll, external }) => (
+                <Link key={generateID()} className="dropdown-item" to={to} scroll={scroll} external={external} children={label} />
             ));
         return children ? (
             <Dropdown key={generateID()} name={offcanvas ? `offcanvas-${name}` : name} label={label} alignment="right" caret>
@@ -19,7 +19,7 @@ const Menu = ({ offcanvas }) => {
             </Dropdown>
         ) : (
             <li key={generateID()} className="nav-item">
-                <Link className="nav-link" to={to} external={external} children={label} />
+                <Link className="nav-link" to={to} scroll={scroll} external={external} children={label} />
             </li>
         );
     });

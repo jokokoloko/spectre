@@ -8,8 +8,8 @@ import Link from './unit/Link';
 
 const Account = () => {
     const { action, link } = useSite();
-    const loopChildren = menu.ACCOUNT_LOG_IN.map(({ label, to, external }) => (
-        <Link key={generateID()} className="dropdown-item" to={to} external={external} children={label} />
+    const loopChildren = menu.ACCOUNT_LOG_IN.map(({ label, to, scroll, external }) => (
+        <Link key={generateID()} className="dropdown-item" to={to} scroll={scroll} external={external} children={label} />
     ));
     return (
         <ul className="navbar-action ml-auto account account-guest">

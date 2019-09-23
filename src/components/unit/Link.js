@@ -1,4 +1,5 @@
 import React, { Children } from 'react';
+import { Link as ScrollTo } from 'react-scroll';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
@@ -16,11 +17,15 @@ ActiveLink.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-const Link = ({ className, activeClassName, to, title, rel, external, children }) =>
+const Link = ({ className, activeClassName, to, title, rel, scroll, external, children }) =>
     external ? (
         <a className={className} href={to} title={title} target="_blank" rel="noopener noreferrer">
             {children}
         </a>
+    ) : scroll ? (
+        <ScrollTo className={className} to={to} duration={500} offset={30} spy smooth>
+            {children}
+        </ScrollTo>
     ) : (
         <ActiveLink activeClassName={activeClassName} href={to}>
             <a className={className} title={title} rel={rel}>
@@ -35,6 +40,7 @@ Link.propTypes = {
     to: PropTypes.string,
     title: PropTypes.string,
     rel: PropTypes.string,
+    scroll: PropTypes.bool,
     external: PropTypes.bool,
     children: PropTypes.node.isRequired,
 };
@@ -45,6 +51,7 @@ Link.defaultProps = {
     to: path.ROOT,
     title: undefined,
     rel: undefined,
+    scroll: false,
     external: false,
 };
 
