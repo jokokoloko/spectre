@@ -14,6 +14,11 @@ export const DROPDOWN = [
         label: 'Three',
         to: `${path.POST}/3`,
     },
+    {
+        label: 'React',
+        to: path.REACT,
+        external: true,
+    },
 ];
 
 // Main
