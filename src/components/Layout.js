@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import OffCanvas from 'react-aria-offcanvas';
 import { Events } from 'react-scroll';
 import PropTypes from 'prop-types';
@@ -12,81 +12,52 @@ import Header from './region/Header';
 import Footer from './region/Footer';
 import Scroll from './widget/Scroll';
 
-class Layout extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isOpen: false,
-            showScroll: false,
+const Layout = ({ location, template, title, description, children }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const onOpen = () => setIsOpen(true);
+    const onClose = () => setIsOpen(false);
+    useEffect(() => {
+        isOpen && Events.scrollEvent.register('end', onClose);
+        return () => Events.scrollEvent.remove('end');
+    }, [isOpen]);
+    const offcanvasPush = isOpen ? 'offcanvas-push offcanvas-push-out' : 'offcanvas-push';
+    const offset = 210;
+    const [showScroll, setShowScroll] = useState(false);
+    useEffect(() => {
+        const onScroll = () => {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            showScroll && scrollTop <= offset && setShowScroll(false);
+            !showScroll && scrollTop >= offset && setShowScroll(true);
         };
-        this.onOpen = this.onOpen.bind(this);
-        this.onClose = this.onClose.bind(this);
-        this.onScroll = this.onScroll.bind(this);
-    }
-    componentDidMount() {
-        window.addEventListener('scroll', this.onScroll);
-        Events.scrollEvent.register('end', () => this.onClose());
-    }
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.onScroll);
-        Events.scrollEvent.remove('end');
-    }
-    onOpen() {
-        this.setState({
-            isOpen: true,
-        });
-    }
-    onClose() {
-        this.setState({
-            isOpen: false,
-        });
-    }
-    onScroll() {
-        const { showScroll } = this.state;
-        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        const offset = 210;
-        showScroll &&
-            scrollTop <= offset &&
-            this.setState({
-                showScroll: false,
-            });
-        !showScroll &&
-            scrollTop >= offset &&
-            this.setState({
-                showScroll: true,
-            });
-    }
-    render() {
-        const { location, template, title, description, children } = this.props;
-        const { isOpen, showScroll } = this.state;
-        const offcanvasPush = isOpen ? 'offcanvas-push offcanvas-push-out' : 'offcanvas-push';
-        const style = {
-            overlay: {
-                background: 'rgba(34, 34, 34, 0.5)',
-                zIndex: 9999,
-            },
-            content: {
-                background: '#222',
-            },
-        };
-        return (
-            <Fragment>
-                <SEO location={location} template={template} title={title} description={description} />
-                <OffCanvas position="right" width="80%" height="100%" labelledby="menu-button" style={style} isOpen={isOpen} onClose={this.onClose}>
-                    <nav id="menu-offcanvas" className="offcanvas-menu">
-                        <Menu offcanvas />
-                    </nav>
-                </OffCanvas>
-                <Header offcanvasPush={offcanvasPush} isOpen={isOpen} onOpen={this.onOpen} />
-                <main id="main" className={offcanvasPush} role="main">
-                    <div className="container-fluid">{children}</div>
-                </main>
-                <Footer offcanvasPush={offcanvasPush} />
-                {showScroll && <Scroll position="fixed" up top />}
-            </Fragment>
-        );
-    }
-}
+        window.addEventListener('scroll', onScroll);
+        return () => window.removeEventListener('scroll', onScroll);
+    }, [showScroll]);
+    const style = {
+        overlay: {
+            background: 'rgba(34, 34, 34, 0.5)',
+            zIndex: 9999,
+        },
+        content: {
+            background: '#222',
+        },
+    };
+    return (
+        <Fragment>
+            <SEO location={location} template={template} title={title} description={description} />
+            <OffCanvas position="right" width="80%" height="100%" labelledby="menu-button" style={style} isOpen={isOpen} onClose={onClose}>
+                <nav id="menu-offcanvas" className="offcanvas-menu">
+                    <Menu offcanvas />
+                </nav>
+            </OffCanvas>
+            <Header offcanvasPush={offcanvasPush} isOpen={isOpen} onOpen={onOpen} />
+            <main id="main" className={offcanvasPush} role="main">
+                <div className="container-fluid">{children}</div>
+            </main>
+            <Footer offcanvasPush={offcanvasPush} />
+            {showScroll && <Scroll position="fixed" up top />}
+        </Fragment>
+    );
+};
 
 Layout.propTypes = {
     location: PropTypes.object,
