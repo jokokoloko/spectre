@@ -1,6 +1,8 @@
 export default () => ({
     home: {
+        slug: 'home',
         title: 'Home',
+        description: 'a Next starter',
         hero: {
             id: 'splash',
             height: 'standard',
