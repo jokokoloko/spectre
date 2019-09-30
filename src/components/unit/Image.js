@@ -5,7 +5,7 @@ const Image = ({ className, source, alternate }) => <img className={className} s
 
 Image.propTypes = {
     className: PropTypes.string,
-    source: PropTypes.object.isRequired,
+    source: PropTypes.string.isRequired,
     alternate: PropTypes.string.isRequired,
 };
 
