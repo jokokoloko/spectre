@@ -1,18 +1,13 @@
 import fetch from 'isomorphic-unfetch';
+import * as path from '../src/path';
 import usePage from '../src/queries/usePage';
 import Layout from '../src/components/Layout';
 import Feed from '../src/components/section/Feed';
-import NextLink from 'next/link'; // delete
+import Card from '../src/components/unit/Card';
 
 const Overview = ({ shows: posts }) => {
     const { overview: page } = usePage();
-    const loopPost = posts.map((node) => (
-        <li key={node.id}>
-            <NextLink href="/post/[slug]" as={`/post/${node.id}`}>
-                <a>{node.name}</a>
-            </NextLink>
-        </li>
-    ));
+    const loopPost = posts.map((node) => <Card key={node.id} node={node} column="col-lg-6" item="post" directory={path.POST} />);
     return (
         <Layout template={`page page-${page.slug}`} title={page.title} description={page.description}>
             <Feed id={`feed-${page.slug}`} space="space-custom" item="post">
@@ -23,9 +18,7 @@ const Overview = ({ shows: posts }) => {
                     </header>
                 )}
                 <section className="node-xs-50 node-lg-80 cheat-both">
-                    <div className="row gutter-20">
-                        <ul>{loopPost}</ul>
-                    </div>
+                    <div className="row gutter-20">{loopPost}</div>
                 </section>
             </Feed>
         </Layout>

@@ -17,7 +17,7 @@ ActiveLink.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-const Link = ({ className, activeClassName, to, title, rel, scroll, external, children }) =>
+const Link = ({ className, activeClassName, to, dynamic, title, rel, scroll, external, children }) =>
     external ? (
         <a className={className} href={to} title={title} target="_blank" rel="noopener noreferrer">
             {children}
@@ -27,7 +27,7 @@ const Link = ({ className, activeClassName, to, title, rel, scroll, external, ch
             {children}
         </ScrollTo>
     ) : (
-        <ActiveLink activeClassName={activeClassName} href={to}>
+        <ActiveLink activeClassName={activeClassName} href={dynamic ? `${dynamic}/[slug]` : to} as={dynamic && to}>
             <a className={className} title={title} rel={rel}>
                 {children}
             </a>
@@ -38,6 +38,7 @@ Link.propTypes = {
     className: PropTypes.string,
     activeClassName: PropTypes.string,
     to: PropTypes.string,
+    dynamic: PropTypes.string,
     title: PropTypes.string,
     rel: PropTypes.string,
     scroll: PropTypes.bool,
@@ -49,6 +50,7 @@ Link.defaultProps = {
     className: 'no-class',
     activeClassName: 'active',
     to: path.ROOT,
+    dynamic: undefined,
     title: undefined,
     rel: undefined,
     scroll: false,
