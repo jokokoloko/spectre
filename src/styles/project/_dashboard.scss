@@ -49,15 +49,6 @@ $dashboard-buffer-toolbar: 20px;
         }
 	}
 
-/* ========================== */
-/* ==========!BASIC========== */
-/* ========================== */
-
-/* ----------!MAIN---------- */
-.dashboard {
-    background-color: $color-phantom;
-    }
-
 /* =========================== */
 /* ==========!BUFFER========== */
 /* =========================== */
@@ -78,7 +69,8 @@ $dashboard-buffer-toolbar: 20px;
 
 /* ----------!HEADER---------- */
 .dashboard #header {
-    border-bottom: 1px solid $color-smoke !important;
+    border-bottom: 1px solid $color-ghost !important;
+    box-shadow: 0 2px $color-ghost !important;
     }
 
 /* ----------!TOOLBAR---------- */
@@ -105,15 +97,14 @@ $dashboard-buffer-toolbar: 20px;
 	}
 .dashboard #toolbar .toolbar-brand {
     border-bottom: 1px solid $color-charcoal;
+    box-shadow: 0 2px $color-charcoal;
     }
 @include media-breakpoint-up(lg) {
 	.dashboard #toolbar .toolbar-brand {
-        margin-top: -6px;
-        margin-bottom: -9px;
         padding-top: (($header-height-lg - $line-height-text) / 2);
         padding-bottom: (($header-height-lg - $line-height-text) / 2);
         font-size: 27px;
-        line-height: 35px;
+        line-height: 30px;
 		}
 	}
 .dashboard #toolbar .toolbar-nav {
