@@ -20,4 +20,10 @@ export default () => ({
         title: 'Overview',
         description: 'The long night.',
     },
+    post: {
+        slug: 'post',
+        title: 'Post',
+        description: 'Dark, dreamy, and dreary.',
+        name: 'Songs',
+    },
 });
