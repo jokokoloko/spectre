@@ -85,7 +85,9 @@ $dashboard-buffer-toolbar: 20px;
     }
 .dashboard #toolbar .toolbar-brand,
 .dashboard #toolbar .toolbar-text,
-.dashboard #toolbar .toolbar-nav > li > a {
+.dashboard #toolbar .toolbar-nav > li > a,
+.dashboard #toolbar .toolbar-nav > li > .btn,
+.dashboard #toolbar .toolbar-nav > li.dropdown .dropdown-menu a {
 	background-color: $color-transparent;
 	margin: 0;
     padding: 10px $dashboard-buffer-toolbar;
@@ -95,6 +97,14 @@ $dashboard-buffer-toolbar: 20px;
     color: $color-white;
     display: block;
 	}
+.dashboard #toolbar .toolbar-nav > li > a,
+.dashboard #toolbar .toolbar-nav > li > .btn,
+.dashboard #toolbar .toolbar-nav > li.dropdown .dropdown-menu a {
+    border: 0 $color-transparent;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    }
 .dashboard #toolbar .toolbar-brand {
     border-bottom: 1px solid $color-charcoal;
     box-shadow: 0 2px $color-charcoal;
