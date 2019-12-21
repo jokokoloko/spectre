@@ -1,9 +1,9 @@
 import fetch from 'isomorphic-unfetch';
-import * as path from '../../src/path';
-import usePage from '../../src/queries/usePage';
-import Layout from '../../src/components/Layout';
-import Feed from '../../src/components/section/Feed';
-import ArticlePost from '../../src/components/project/ArticlePost';
+import * as path from '../../path';
+import usePage from '../../queries/usePage';
+import Layout from '../../components/Layout';
+import Feed from '../../components/section/Feed';
+import ArticlePost from '../../components/project/ArticlePost';
 
 const ArchivePost = ({ shows: posts }) => {
     const { post: archive } = usePage();

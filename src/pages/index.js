@@ -1,6 +1,6 @@
-import usePage from '../src/queries/usePage';
-import Layout from '../src/components/Layout';
-import Hero from '../src/components/section/Hero';
+import usePage from '../queries/usePage';
+import Layout from '../components/Layout';
+import Hero from '../components/section/Hero';
 
 export default () => {
     const { home: page } = usePage();

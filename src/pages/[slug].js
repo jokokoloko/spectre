@@ -1,6 +1,6 @@
-import usePage from '../src/queries/usePage';
-import Layout from '../src/components/Layout';
-import Basic from '../src/components/section/Basic';
+import usePage from '../queries/usePage';
+import Layout from '../components/Layout';
+import Basic from '../components/section/Basic';
 
 const Simple = ({ data: simple, slug }) => (
     <Layout template={`single single-simple single-simple-${slug}`} title={simple.title} description={simple.description}>

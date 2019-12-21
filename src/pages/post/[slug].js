@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-unfetch';
-import { slugify } from '../../src/function';
-import Layout from '../../src/components/Layout';
-import Basic from '../../src/components/section/Basic';
-import Image from '../../src/components/unit/Image';
+import { slugify } from '../../function';
+import Layout from '../../components/Layout';
+import Basic from '../../components/section/Basic';
+import Image from '../../components/unit/Image';
 
 const Post = ({ data: post, slug }) => (
     <Layout template={`single single-post single-post-${slug}`} title={post.name} description={post.summary.replace(/<[/]?p>/g, '')}>
