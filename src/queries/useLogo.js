@@ -1,1 +1,1 @@
-export default () => '/static/icon.png';
+export default () => '/icon.png';
