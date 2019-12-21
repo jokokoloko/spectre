@@ -3,11 +3,11 @@ import * as path from '../../src/path';
 import usePage from '../../src/queries/usePage';
 import Layout from '../../src/components/Layout';
 import Feed from '../../src/components/section/Feed';
-import Card from '../../src/components/unit/Card';
+import ArticlePost from '../../src/components/project/ArticlePost';
 
-const Overview = ({ shows: posts }) => {
+const ArchivePost = ({ shows: posts }) => {
     const { post: archive } = usePage();
-    const loopPost = posts.map((node) => <Card key={node.id} node={node} column="col-lg-6" item="post" directory={path.POST} />);
+    const loopPost = posts.map((post) => <ArticlePost key={post.id} post={post} />);
     return (
         <Layout template="archive archive-post" title={archive.title} description={archive.description}>
             <Feed id="posts" space="space-custom" item="post">
@@ -24,23 +24,11 @@ const Overview = ({ shows: posts }) => {
                     <div className="col">MenuPostType</div>
                 </div>
             </Feed>
-
-            <Feed id={`feed-${archive.slug}`} space="space-custom" item="post">
-                {(archive.title || archive.description) && (
-                    <header className="copy node-xs-50 node-lg-80 text-lg-center">
-                        <h1>{archive.title}</h1>
-                        <h2>{archive.description}</h2>
-                    </header>
-                )}
-                <section className="node-xs-50 node-lg-80 cheat-both">
-                    <div className="row gutter-20">{loopPost}</div>
-                </section>
-            </Feed>
         </Layout>
     );
 };
 
-Overview.getInitialProps = async () => {
+ArchivePost.getInitialProps = async () => {
     const response = await fetch('https://api.tvmaze.com/search/shows?q=batman');
     const data = await response.json();
     console.log(`Show data fetched. Count: ${data.length}`); // delete
@@ -49,4 +37,4 @@ Overview.getInitialProps = async () => {
     };
 };
 
-export default Overview;
+export default ArchivePost;

@@ -7,7 +7,7 @@ import Card from '../src/components/unit/Card';
 
 const Overview = ({ shows: posts }) => {
     const { overview: page } = usePage();
-    const loopPost = posts.map((node) => <Card key={node.id} node={node} column="col-lg-6" item="post" directory={path.POST} />);
+    const loopPost = posts.map((post) => <Card key={post.id} node={post} column="col-lg-6" item="post" directory={path.POST} />);
     return (
         <Layout template={`page page-${page.slug}`} title={page.title} description={page.description}>
             <Feed id={`feed-${page.slug}`} space="space-custom" item="post">
